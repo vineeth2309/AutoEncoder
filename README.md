@@ -1,2 +1,2 @@
-# AutoEncoder
-Develop models for self supervised learning
+# Semantic-Segmentation
+Image Segmentation using Pytorch

@@ -2,7 +2,8 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
+.idea
+*.ipynb
 # C extensions
 *.so
 
@@ -25,6 +26,8 @@ share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+models/
+data/
 MANIFEST
 
 # PyInstaller
