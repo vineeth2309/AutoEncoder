@@ -88,12 +88,15 @@ class Main:
 		self.test_data = glob.glob(os.path.join(self.cfg.test_dir, 'image_2', "*.png"))
 		for i, file in enumerate(self.test_data):
 			img = cv2.resize(cv2.imread(file, cv2.IMREAD_UNCHANGED), (self.cfg.input_width, self.cfg.input_height))
+			# img = cv2.resize(cv2.imread(file, cv2.IMREAD_UNCHANGED), (self.cfg.input_height, self.cfg.input_width))
 			self.img_tensor = (torch.from_numpy(np.expand_dims(img.astype(np.uint8), 0)).to(
 				self.device).float()/255).permute(0, 3, 1, 2)
 			with torch.no_grad():
 				out =  self.model(self.img_tensor).permute(0, 2, 3, 1).cpu().numpy()[0]
-				cv2.imshow("OUTPUT", cv2.resize(out, (640, 480)))
-				cv2.imshow("INPUT", cv2.resize(img, (640, 480)))
+				cv2.imshow("INPUT", img)
+				cv2.imshow("OUTPUT", out)
+				# cv2.imshow("OUTPUT", cv2.resize(out, (640, 480)))
+				# cv2.imshow("INPUT", cv2.resize(img, (640, 480)))
 				k = cv2.waitKey()
 				if k == ord('q'):
 					exit()
